@@ -1,18 +1,22 @@
 import { useState } from "react";
-import Input from "./component/Input";
-import Showuser from "./component/Showuser";
+import Expenseinp from "./component/Expenseinp";
+import Showexpense from "./component/Showexpense";
 
 function App() {
-  const [addusers, setaddusers] = useState([]);
-  function IncUserHandler(user) {
-    setaddusers((prev) => {
-      return [...prev, user];
+  const [expense, setexpense] = useState([]);
+  const [valedit, setvalEdit] = useState(null);
+  function addExpenseHandler(val) {
+    setexpense((prev) => {
+      return [...prev, val];
     });
+  }
+  function dataOnFields(val) {
+    setvalEdit(val);
   }
   return (
     <>
-      <Input onaddUser={IncUserHandler} />
-      <Showuser users={addusers} />
+      <Expenseinp onAddexpense={addExpenseHandler} valedit={valedit} />
+      <Showexpense expense={expense} dataOnFields={dataOnFields} />
     </>
   );
 }
